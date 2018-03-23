@@ -1,0 +1,35 @@
+(defun infix (list)
+  list(list(cadr list)(car list)(car(cdr(cdr list)))))
+
+(defun prefix (list)
+  list(list(cadr list)(car list)(car(cdr(cdr list)))))
+
+(defun apply-ops (list)
+ list(eval(prefix list)))
+
+(defun rotate(list)
+  list(append (last list) (butlast list)))
+
+(defun keep-order-move (list)
+  (cond 
+    ((= (length list) 1)
+      list list)
+    ((= (length list) 2)
+      list(list(rotate list)list))
+    ((= (length list) 3)
+      list(list(rotate list)(rotate(rotate list))list))
+    ((= (length list) 4)
+      list(list(rotate list)(rotate(rotate list))(rotate(rotate(rotate list)))list))
+    ((= (length list) 5)
+      list(list(rotate list)(rotate(rotate list))(rotate(rotate(rotate list)))(rotate(rotate(rotate(rotate list))))list))
+    ((= (length list) 6)
+      list(list(rotate list)(rotate(rotate list))(rotate(rotate(rotate list)))(rotate(rotate(rotate(rotate list))))(rotate(rotate(rotate(rotate(rotate list)))))list))
+  
+    ))
+(print (infix '(- 13 3)))
+(print (infix '(+ 2 3 )))
+(print (prefix '(13 + 4)))
+(print (prefix '(2 * 17)))
+(print (apply-ops '(2 + 3)))
+(print (apply-ops '(27 - 6)))
+(print (keep-order-move '(a b c d e f)))
